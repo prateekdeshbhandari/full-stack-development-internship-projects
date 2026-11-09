@@ -2,6 +2,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('../config/database');
 
+const MIN_PASSWORD_LENGTH = 8;
+const MAX_PASSWORD_BYTES = 72;
+const MAX_EMAIL_LENGTH = 254;
+const MAX_NAME_LENGTH = 100;
+
 const getJwtSecret = () => {
   const secret = process.env.JWT_SECRET;
 
@@ -15,7 +20,8 @@ const getJwtSecret = () => {
 const createToken = (userId, secret) =>
   jwt.sign({ sub: userId }, secret, { expiresIn: '7d' });
 
-const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const isValidEmail = (email) =>
+  email.length <= MAX_EMAIL_LENGTH && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 const register = async (req, res, next) => {
   try {
@@ -28,13 +34,14 @@ const register = async (req, res, next) => {
 
     if (
       !name ||
+      name.length > MAX_NAME_LENGTH ||
       !isValidEmail(email) ||
-      password.length < 8 ||
-      Buffer.byteLength(password, 'utf8') > 72
+      password.length < MIN_PASSWORD_LENGTH ||
+      Buffer.byteLength(password, 'utf8') > MAX_PASSWORD_BYTES
     ) {
       return res.status(400).json({
         message:
-          'Provide a name, valid email, and password between 8 and 72 UTF-8 bytes.',
+          'Provide a name of at most 100 characters, a valid email, and a password between 8 and 72 UTF-8 bytes.',
       });
     }
 
@@ -71,8 +78,14 @@ const login = async (req, res, next) => {
       typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
     const password = typeof body.password === 'string' ? body.password : '';
 
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Email and password are required.' });
+    if (
+      !isValidEmail(email) ||
+      !password ||
+      Buffer.byteLength(password, 'utf8') > MAX_PASSWORD_BYTES
+    ) {
+      return res.status(400).json({
+        message: 'Provide a valid email and a password of at most 72 UTF-8 bytes.',
+      });
     }
 
     const user = await prisma.user.findUnique({ where: { email } });
