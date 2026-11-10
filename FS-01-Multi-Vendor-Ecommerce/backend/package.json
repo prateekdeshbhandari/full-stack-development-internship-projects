@@ -1,0 +1,14 @@
+{
+  "name": "multi-vendor-ecommerce-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Starter HTTP API for a multi-vendor ecommerce catalog",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
