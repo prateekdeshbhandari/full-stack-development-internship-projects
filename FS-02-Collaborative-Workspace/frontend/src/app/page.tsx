@@ -36,7 +36,12 @@ function BrandMark() {
 
 function WorkspacePreview() {
   return (
-    <div className="preview-wrap" id="preview" aria-label="Workspace preview">
+    <div
+      className="preview-wrap"
+      id="preview"
+      role="region"
+      aria-label="Workspace preview"
+    >
       <div className="preview-glow" />
       <div className="workspace-preview">
         <div className="preview-top">
