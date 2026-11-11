@@ -164,6 +164,13 @@ const server = http.createServer(async (request, response) => {
   if (url.pathname === '/api/products' && request.method === 'GET') {
     const search = (url.searchParams.get('q') || '').trim().toLowerCase();
     const category = (url.searchParams.get('category') || '').trim().toLowerCase();
+    const sort = url.searchParams.get('sort');
+
+    if (sort && !['price-asc', 'price-desc'].includes(sort)) {
+      sendJson(response, 400, { message: 'Sort must be price-asc or price-desc.' });
+      return;
+    }
+
     const results = [...products.values()].filter((product) => {
       const matchesSearch =
         !search ||
@@ -172,6 +179,11 @@ const server = http.createServer(async (request, response) => {
         product.vendor.toLowerCase().includes(search);
       return matchesSearch && (!category || product.category.toLowerCase() === category);
     });
+
+    if (sort) {
+      const direction = sort === 'price-asc' ? 1 : -1;
+      results.sort((first, second) => direction * (first.price - second.price));
+    }
 
     sendJson(response, 200, { products: results, total: results.length });
     return;
