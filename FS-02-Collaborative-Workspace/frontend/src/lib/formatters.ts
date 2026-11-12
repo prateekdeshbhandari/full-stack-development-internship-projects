@@ -1,21 +1,18 @@
-export const formatDate = (value: string | Date, locale = 'en-US') => {
-  const date = value instanceof Date ? value : new Date(value);
+﻿export function formatDate(date: Date | string) {
+  const value = typeof date === "string" ? new Date(date) : date;
 
-  if (Number.isNaN(date.getTime())) {
-    return '—';
-  }
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(value);
+}
 
-  return new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  }).format(date);
-};
-
-export const getInitials = (name: string) =>
-  name
-    .split(' ')
+export function getInitials(name: string) {
+  return name
+    .split(" ")
     .filter(Boolean)
     .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase() ?? '')
-    .join('') || 'U';
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+}
