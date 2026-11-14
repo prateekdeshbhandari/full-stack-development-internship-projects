@@ -6,9 +6,11 @@ type ProductCardProps = {
   price: number;
   tag: string;
   rating: number;
+  category?: string;
+  onAdd?: () => void;
 };
 
-export function ProductCard({ title, vendor, price, tag, rating }: ProductCardProps) {
+export function ProductCard({ title, vendor, price, tag, rating, category, onAdd }: ProductCardProps) {
   return (
     <article
       style={{
@@ -39,11 +41,14 @@ export function ProductCard({ title, vendor, price, tag, rating }: ProductCardPr
           </span>
           <span style={{ color: "#a06d0a", fontWeight: 700 }}>★ {rating}</span>
         </div>
+        {category && <div style={{ marginBottom: 8, color: "#65716a", fontSize: 12 }}>{category}</div>}
         <h3 style={{ margin: "0 0 12px", fontSize: 22, letterSpacing: -0.7 }}>{title}</h3>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <strong style={{ fontSize: 26, letterSpacing: -0.8 }}>{formatPrice(price)}</strong>
           <button
             type="button"
+            onClick={onAdd}
+            aria-label={`Add ${title} to cart`}
             style={{
               border: "none",
               background: "#1d2b2a",
