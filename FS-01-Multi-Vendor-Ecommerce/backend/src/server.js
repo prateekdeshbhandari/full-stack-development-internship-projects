@@ -132,7 +132,9 @@ const validateProduct = (input, existing = {}) => {
 };
 
 const server = http.createServer(async (request, response) => {
-  const frontendOrigin = process.env.FRONTEND_ORIGIN;
+  const frontendOrigin =
+    process.env.FRONTEND_ORIGIN ||
+    (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000');
   const requestOrigin = request.headers.origin;
 
   if (frontendOrigin && requestOrigin === frontendOrigin) {
