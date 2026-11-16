@@ -1,4 +1,9 @@
-﻿import { PresenceAvatars } from "../../components/presence/PresenceAvatars";
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../../hooks/useAuth";
+import { PresenceAvatars } from "../../components/presence/PresenceAvatars";
 import { WorkspaceCard } from "../../components/workspace/WorkspaceCard";
 
 const members = [
@@ -15,6 +20,9 @@ const workspaceCards = [
 ];
 
 export default function DashboardPage() {
+  const router = useRouter();
+  const { user, isLoading, authError, logout } = useAuth();
+
   return (
     <main style={{ background: "#f5f6f2", minHeight: "100vh", padding: 32 }}>
       <div style={{ maxWidth: 1120, margin: "0 auto" }}>
@@ -26,12 +34,34 @@ export default function DashboardPage() {
             <h1 style={{ margin: "10px 0 0", fontSize: 42, letterSpacing: -1.6 }}>Team dashboard</h1>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <span style={{ color: "#5d645f", fontSize: 13 }}>
+              {isLoading ? "Loading account..." : user ? `Hi, ${user.name}` : <Link href="/login">Sign in</Link>}
+            </span>
             <PresenceAvatars members={members} />
-            <button style={{ border: "none", background: "#212820", color: "#fff", borderRadius: 999, padding: "12px 18px", fontWeight: 700 }}>
-              New workspace
-            </button>
+            {user ? (
+              <button
+                type="button"
+                onClick={() => {
+                  logout();
+                  router.replace("/login");
+                }}
+                style={{ border: "none", background: "#212820", color: "#fff", borderRadius: 999, padding: "12px 18px", fontWeight: 700 }}
+              >
+                Sign out
+              </button>
+            ) : (
+              <button type="button" style={{ border: "none", background: "#212820", color: "#fff", borderRadius: 999, padding: "12px 18px", fontWeight: 700 }}>
+                New workspace
+              </button>
+            )}
           </div>
         </div>
+
+        {authError && (
+          <p role="alert" style={{ background: "#fff3f1", borderRadius: 12, color: "#a33227", margin: "0 0 20px", padding: 14 }}>
+            Your session could not be verified. Please sign in again.
+          </p>
+        )}
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 20, marginBottom: 28 }}>
           {[

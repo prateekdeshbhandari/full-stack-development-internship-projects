@@ -1,13 +1,9 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { apiRequest } from "../../services/api";
-
-type AuthResponse = {
-  user: { id: string; name: string; email: string };
-  token: string;
-};
+import { useState, type FormEvent } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 const getErrorMessage = (error: unknown) => {
   if (!(error instanceof Error)) return "Unable to sign in. Please try again.";
@@ -21,6 +17,7 @@ const getErrorMessage = (error: unknown) => {
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -32,11 +29,7 @@ export default function LoginPage() {
     setIsSubmitting(true);
 
     try {
-      const { token } = await apiRequest<AuthResponse>("/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-      });
-      window.sessionStorage.setItem("authToken", token);
+      await login(email, password);
       router.replace("/dashboard");
     } catch (requestError) {
       setError(getErrorMessage(requestError));
@@ -86,7 +79,7 @@ export default function LoginPage() {
         </form>
 
         <p style={{ textAlign: "center", marginTop: 18, color: "#5f665f" }}>
-          New here? <a href="/register" style={{ color: "#1d271c", fontWeight: 700 }}>Create account</a>
+          New here? <Link href="/register" style={{ color: "#1d271c", fontWeight: 700 }}>Create account</Link>
         </p>
       </div>
     </main>
