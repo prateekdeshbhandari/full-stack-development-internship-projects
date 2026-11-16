@@ -1,5 +1,6 @@
 const http = require('node:http');
 const { randomUUID } = require('node:crypto');
+const { placeOrder, listOrders } = require('./services/orderService');
 
 const PORT = Number.parseInt(process.env.PORT || '4000', 10);
 const MAX_BODY_BYTES = 16 * 1024;
@@ -191,6 +192,36 @@ const server = http.createServer(async (request, response) => {
     return;
   }
 
+  if (url.pathname === '/api/orders' && request.method === 'GET') {
+    const orders = listOrders();
+    sendJson(response, 200, { orders, total: orders.length });
+    return;
+  }
+
+  if (url.pathname === '/api/orders' && request.method === 'POST') {
+    if (request.headers['content-type']?.split(';')[0].trim() !== 'application/json') {
+      sendJson(response, 415, { message: 'Content-Type must be application/json.' });
+      return;
+    }
+
+    try {
+      const result = placeOrder(products, await readJsonBody(request));
+      if (result.error) {
+        sendJson(response, result.status, { message: result.error });
+        return;
+      }
+
+      sendJson(response, 201, { order: result.order });
+    } catch (error) {
+      const statusCode = error.status || 500;
+      if (statusCode === 500) console.error(error);
+      sendJson(response, statusCode, {
+        message: statusCode === 500 ? 'Unable to process order.' : error.message,
+      });
+    }
+    return;
+  }
+
   const productMatch = url.pathname.match(/^\/api\/products\/([^/]+)$/);
   if (productMatch) {
     const id = decodeURIComponent(productMatch[1]);
@@ -268,9 +299,13 @@ const server = http.createServer(async (request, response) => {
   const knownPath =
     url.pathname === '/api/health' ||
     url.pathname === '/api/products' ||
+    url.pathname === '/api/orders' ||
     productMatch !== null;
   if (knownPath) {
-    response.setHeader('Allow', productMatch ? 'GET, PATCH, DELETE' : 'GET, POST');
+    response.setHeader(
+      'Allow',
+      productMatch ? 'GET, PATCH, DELETE' : url.pathname === '/api/health' ? 'GET' : 'GET, POST',
+    );
     sendJson(response, 405, { message: 'Method not allowed.' });
     return;
   }
