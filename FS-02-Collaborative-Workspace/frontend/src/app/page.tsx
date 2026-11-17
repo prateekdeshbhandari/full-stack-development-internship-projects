@@ -184,6 +184,42 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section" aria-labelledby="start-title">
+        <div
+          style={{
+            alignItems: "center",
+            background: "#eef2e3",
+            borderRadius: 18,
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 24,
+            justifyContent: "space-between",
+            padding: "30px 32px",
+          }}
+        >
+          <div>
+            <div className="eyebrow">
+              <span className="eyebrow-dot" />
+              READY WHEN YOU ARE
+            </div>
+            <h2 id="start-title" style={{ fontSize: 26, letterSpacing: -1.2, margin: "12px 0 7px" }}>
+              Make room for your team.
+            </h2>
+            <p style={{ color: "#686b65", fontSize: 13, lineHeight: 1.6, margin: 0 }}>
+              Create a workspace and bring your next great idea together.
+            </p>
+          </div>
+          <div className="hero-actions" style={{ marginTop: 0 }}>
+            <a className="button-primary" href="/register">
+              Create a workspace <span aria-hidden="true">&nbsp;↗</span>
+            </a>
+            <a className="text-link" href="/login">
+              Sign in <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <footer className="footer">
         <a className="brand" href="#" aria-label="Gather home">
           <BrandMark />
