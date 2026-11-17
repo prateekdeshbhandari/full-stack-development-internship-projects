@@ -8,6 +8,12 @@ const products = [
   { title: "Arc Desk Mat", vendor: "Field & Form", price: 64, tag: "M", rating: 4.9 },
 ];
 
+const categories = [
+  { name: "Home & Living", description: "Thoughtful pieces for every room", tag: "H" },
+  { name: "Workspace", description: "Make room for good ideas", tag: "W" },
+  { name: "Tech & Audio", description: "Everyday tech, carefully chosen", tag: "T" },
+];
+
 export default function HomePage() {
   return (
     <main style={{ background: "#f5f5f2", minHeight: "100vh", color: "#101826" }}>
@@ -61,6 +67,16 @@ export default function HomePage() {
               Become a seller
             </Link>
           </div>
+          <div style={{ display: "flex", gap: 28, marginTop: 30, flexWrap: "wrap" }}>
+            <div>
+              <strong style={{ display: "block", fontSize: 22 }}>3,200+</strong>
+              <span style={{ color: "#53606c", fontSize: 14 }}>independent vendors</span>
+            </div>
+            <div>
+              <strong style={{ display: "block", fontSize: 22 }}>Curated</strong>
+              <span style={{ color: "#53606c", fontSize: 14 }}>products with a story</span>
+            </div>
+          </div>
         </div>
 
         <div
@@ -93,13 +109,40 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "18px 28px 30px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", gap: 16, flexWrap: "wrap", marginBottom: 18 }}>
+          <div>
+            <p style={{ margin: "0 0 6px", color: "#56646c", fontSize: 12, fontWeight: 700, letterSpacing: 1.2, textTransform: "uppercase" }}>Find your next favorite</p>
+            <h2 style={{ margin: 0, fontSize: 34, letterSpacing: -1.2 }}>Shop by category</h2>
+          </div>
+          <Link href="/products" style={{ color: "#1d2b2a", fontWeight: 700 }}>Browse everything</Link>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
+          {categories.map((category) => (
+            <Link
+              key={category.name}
+              href="/products"
+              style={{ display: "flex", alignItems: "center", gap: 16, background: "#fff", border: "1px solid #edf0ee", borderRadius: 18, padding: 18, color: "#101826" }}
+            >
+              <span style={{ display: "grid", placeItems: "center", width: 48, height: 48, flexShrink: 0, borderRadius: 14, background: "#edf3dd", fontSize: 20, fontWeight: 800 }}>
+                {category.tag}
+              </span>
+              <span>
+                <strong style={{ display: "block", marginBottom: 4 }}>{category.name}</strong>
+                <span style={{ color: "#53606c", fontSize: 13 }}>{category.description}</span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section style={{ maxWidth: 1200, margin: "0 auto", padding: "18px 28px 80px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
           <h2 style={{ margin: 0, fontSize: 34, letterSpacing: -1.2 }}>Trending now</h2>
           <Link href="/products" style={{ color: "#1d2b2a", fontWeight: 700 }}>View all</Link>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: 20 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 20 }}>
           {products.map((product) => (
             <ProductCard key={product.title} {...product} />
           ))}
