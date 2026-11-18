@@ -1,7 +1,17 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const createToken = (userId, secret = process.env.JWT_SECRET || 'dev-secret') =>
+const getJwtSecret = () => {
+  const secret = process.env.JWT_SECRET;
+
+  if (!secret) {
+    throw new Error('JWT_SECRET is not configured');
+  }
+
+  return secret;
+};
+
+const createToken = (userId, secret = getJwtSecret()) =>
   jwt.sign({ sub: userId }, secret, { expiresIn: '7d' });
 
 const hashPassword = async (password) => bcrypt.hash(password, 12);

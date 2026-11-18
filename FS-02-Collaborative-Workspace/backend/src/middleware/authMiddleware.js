@@ -2,6 +2,12 @@ const jwt = require('jsonwebtoken');
 const prisma = require('../config/database');
 
 const protect = async (req, res, next) => {
+  const secret = process.env.JWT_SECRET;
+
+  if (!secret) {
+    return next(new Error('JWT_SECRET is not configured'));
+  }
+
   try {
     const authHeader = req.headers.authorization || '';
     const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
@@ -10,7 +16,6 @@ const protect = async (req, res, next) => {
       return res.status(401).json({ success: false, message: 'Authentication token is missing.' });
     }
 
-    const secret = process.env.JWT_SECRET || 'dev-secret';
     const decoded = jwt.verify(token, secret);
     const user = await prisma.user.findUnique({
       where: { id: decoded.sub },
