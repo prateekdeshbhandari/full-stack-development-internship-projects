@@ -85,6 +85,8 @@ const validateProduct = (input, existing = {}) => {
     vendor: input.vendor ?? existing.vendor,
     inventory: input.inventory ?? existing.inventory,
   };
+  const priceCents =
+    typeof product.price === 'number' ? Math.round(product.price * 100) : NaN;
 
   if (
     typeof product.name !== 'string' ||
@@ -99,8 +101,12 @@ const validateProduct = (input, existing = {}) => {
   ) {
     return { error: 'Description must be a string of at most 2000 characters.' };
   }
-  if (typeof product.price !== 'number' || !Number.isFinite(product.price) || product.price < 0) {
-    return { error: 'Price must be a non-negative number.' };
+  if (
+    !Number.isFinite(product.price) ||
+    !Number.isSafeInteger(priceCents) ||
+    priceCents < 0
+  ) {
+    return { error: 'Price must be a non-negative amount within the supported currency range.' };
   }
   if (
     typeof product.category !== 'string' ||
@@ -124,7 +130,7 @@ const validateProduct = (input, existing = {}) => {
     value: {
       name: product.name.trim(),
       description: product.description.trim(),
-      price: Math.round(product.price * 100) / 100,
+      price: priceCents / 100,
       category: product.category.trim(),
       vendor: product.vendor.trim(),
       inventory: product.inventory,
