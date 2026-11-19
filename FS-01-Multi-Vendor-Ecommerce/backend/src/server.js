@@ -48,14 +48,21 @@ const sendJson = (response, statusCode, data) => {
 const readJsonBody = (request) =>
   new Promise((resolve, reject) => {
     let body = '';
+    let bodyBytes = 0;
     let tooLarge = false;
 
     request.setEncoding('utf8');
     request.on('data', (chunk) => {
-      body += chunk;
-      if (Buffer.byteLength(body, 'utf8') > MAX_BODY_BYTES) {
+      if (tooLarge) return;
+
+      bodyBytes += Buffer.byteLength(chunk, 'utf8');
+      if (bodyBytes > MAX_BODY_BYTES) {
         tooLarge = true;
+        body = '';
+        return;
       }
+
+      body += chunk;
     });
     request.on('end', () => {
       if (tooLarge) {
