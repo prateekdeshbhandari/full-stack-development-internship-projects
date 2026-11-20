@@ -18,7 +18,7 @@ A Notion/Figma-style workspace where several people edit the same document at on
 
 ---
 
-## How to Run
+## How to Run Locally
 
 Open two CMD windows:
 
@@ -40,10 +40,10 @@ Frontend runs on **http://localhost:3001**
 
 ## Demo Login
 
-* **Login URL:** http://localhost:3001/login
-* **Email:** `alex@company.com`
-* **Password:** `password123`
-* You can also create a new account at `/register`
+- **Login URL:** http://localhost:3001/login
+- **Email:** `alex@company.com`
+- **Password:** `password123`
+- You can also create a new account at `/register`
 
 ---
 

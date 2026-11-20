@@ -18,7 +18,7 @@ An Amazon-style marketplace where many vendors sell, customers buy, and the plat
 
 ---
 
-## How to Run
+## How to Run Locally
 
 Open two CMD windows:
 
@@ -40,10 +40,10 @@ Frontend runs on **http://localhost:3000**
 
 ## Demo Login
 
-* **Login URL:** http://localhost:3000/login
-* **Email:** `vendor@market.com`
-* **Password:** `password123`
-* You can also create a new account at `/register`
+- **Login URL:** http://localhost:3000/login
+- **Email:** `vendor@market.com`
+- **Password:** `password123`
+- You can also create a new account at `/register`
 
 ---
 

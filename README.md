@@ -1,17 +1,24 @@
 # Full-Stack Development Internship Projects
 
-Welcome! This repository contains the source code for two complete full-stack web applications:
+Welcome! This repository contains two complete full-stack web applications built as part of the internship program.
 
-1. **Project #1 (FS-01): Multi-Vendor E-Commerce Marketplace**
-2. **Project #2 (FS-02): Real-Time Collaborative Workspace**
+1. **Project 1 — FS-01: MarketHub (Multi-Vendor E-Commerce Marketplace)**
+2. **Project 2 — FS-02: Gather (Real-Time Collaborative Workspace)**
 
-When you open each project in your browser, it opens the **main website directly** (not a login gate), allowing you to explore the products, documents, and features immediately.
+---
+
+## 🚀 Live Deployment
+
+| Project | Live URL |
+| :--- | :--- |
+| **Project 1: MarketHub** | **https://markethub-fs01.vercel.app** *(coming soon)* |
+| **Project 2: Gather** | **https://gather-fs02.vercel.app** *(coming soon)* |
 
 ---
 
 ## 📸 Project Screenshots
 
-### Project 1: MarketHub — Multi-Vendor E-Commerce Marketplace
+### Project 1 — MarketHub: Multi-Vendor E-Commerce Marketplace
 
 **Homepage**
 ![MarketHub Homepage](FS-01-Multi-Vendor-Ecommerce/images/homepage.jpg)
@@ -27,7 +34,7 @@ When you open each project in your browser, it opens the **main website directly
 
 ---
 
-### Project 2: Gather — Real-Time Collaborative Workspace
+### Project 2 — Gather: Real-Time Collaborative Workspace
 
 **Homepage**
 ![Gather Homepage](FS-02-Collaborative-Workspace/images/homepage.jpg)
@@ -43,86 +50,60 @@ When you open each project in your browser, it opens the **main website directly
 
 ---
 
-## 🌐 Quick Access URLs
+## 💻 How to Run Locally (CMD)
 
-| Project | Website URL | Backend API |
-| :--- | :--- | :--- |
-| **Project 1: Multi-Vendor Marketplace** | **http://localhost:3000** | `http://localhost:4000` |
-| **Project 2: Collaborative Workspace** | **http://localhost:3001** | `http://localhost:5000` |
+### Run Both Projects Together
+Double-click **`run-all.bat`** — it opens all 4 services automatically.
 
 ---
 
-## 💻 How to Run (CMD / Terminal)
+### Run Project 1 Only (MarketHub)
+Open two CMD windows:
 
-Open **Command Prompt (CMD)** in the project directory:
-
-### Option 1: Run Both Projects Together (Recommended)
-Double-click **`run-all.bat`** or execute:
+**Window 1 — Backend:**
 ```cmd
-run-all.bat
-```
-This automatically opens 4 separate windows for both backends and frontends.
-
----
-
-### Option 2: Run Project 1 Only (Multi-Vendor Marketplace)
-Double-click **`run-project-1.bat`** or run in two CMD windows:
-
-**Window 1 (Backend):**
-```cmd
-cd FS-01-Multi-Vendor-Ecommerce\FS-01-Multi-Vendor-Ecommerce\backend
+cd FS-01-Multi-Vendor-Ecommerce\backend
 npm start
 ```
 
-**Window 2 (Frontend):**
+**Window 2 — Frontend:**
 ```cmd
-cd FS-01-Multi-Vendor-Ecommerce\FS-01-Multi-Vendor-Ecommerce\frontend
+cd FS-01-Multi-Vendor-Ecommerce\frontend
 npm run dev
 ```
-
-* Main Storefront Website: **http://localhost:3000**
-* Products & Cart: **http://localhost:3000/products**
-* Vendor Dashboard: **http://localhost:3000/dashboard**
+Open: **http://localhost:3000**
 
 ---
 
-### Option 3: Run Project 2 Only (Collaborative Workspace)
-Double-click **`run-project-2.bat`** or run in two CMD windows:
+### Run Project 2 Only (Gather)
+Open two CMD windows:
 
-**Window 1 (Backend):**
+**Window 1 — Backend:**
 ```cmd
 cd FS-02-Collaborative-Workspace\backend
 npm start
 ```
 
-**Window 2 (Frontend):**
+**Window 2 — Frontend:**
 ```cmd
 cd FS-02-Collaborative-Workspace\frontend
 npm run dev
 ```
-
-* Main Collaborative Website: **http://localhost:3001**
-* Live Document Editor: **http://localhost:3001/document**
-* Team Overview Dashboard: **http://localhost:3001/dashboard**
-* Workspaces: **http://localhost:3001/workspace**
+Open: **http://localhost:3001**
 
 ---
 
-## 🔐 Demo Login Credentials (For Testing)
+## 🔐 Demo Login Credentials
 
-The user interfaces keep credentials clean and realistic (no passwords shown on-screen). You can test authentication using these pre-seeded demo accounts:
+### Project 1 — MarketHub
+- **URL:** http://localhost:3000/login
+- **Email:** `vendor@market.com`
+- **Password:** `password123`
 
-### Project 1 (MarketHub)
-* **Login URL:** http://localhost:3000/login
-* **Email:** `vendor@market.com`
-* **Password:** `password123`
-* *(You can also register any new customer or vendor account at `/register`)*
-
-### Project 2 (Gather)
-* **Login URL:** http://localhost:3001/login
-* **Email:** `alex@company.com`
-* **Password:** `password123`
-* *(You can also register any new team member account at `/register`)*
+### Project 2 — Gather
+- **URL:** http://localhost:3001/login
+- **Email:** `alex@company.com`
+- **Password:** `password123`
 
 ---
 
@@ -140,16 +121,21 @@ The user interfaces keep credentials clean and realistic (no passwords shown on-
 
 ---
 
-## 🌟 What You Can Test in Each App
+## 📁 Repository Structure
 
-### Project 1: Multi-Vendor Marketplace
-- **Home & Catalog:** Browse curated items from independent sellers at `/products`.
-- **Search & Filters:** Search products by keyword, category, and sort by price or rating.
-- **Cart & Order Checkout:** Add items to your cart and click "Checkout Now" to place an order in real-time.
-- **Vendor Dashboard:** Log in as a vendor to add listings, update stock levels, and review inventory.
-
-### Project 2: Real-Time Collaborative Workspace
-- **Main Landing Page:** Learn about workspace features and navigate directly to live tools.
-- **Live Collaborative Editor:** Write and format documents live in Markdown at `/document`.
-- **Team Discussion:** Post real-time comments and review active threads with colleagues.
-- **Presence & Avatars:** See active team members collaborating on the same document.
+```
+/
+├── FS-01-Multi-Vendor-Ecommerce/     ← Project 1 source code
+│   ├── frontend/                      ← Next.js frontend (port 3000)
+│   ├── backend/                       ← Node.js backend (port 4000)
+│   ├── images/                        ← Project 1 screenshots
+│   └── README.md
+├── FS-02-Collaborative-Workspace/    ← Project 2 source code
+│   ├── frontend/                      ← Next.js frontend (port 3001)
+│   ├── backend/                       ← Express + Socket.io backend (port 5000)
+│   ├── images/                        ← Project 2 screenshots
+│   └── README.md
+├── run-all.bat                        ← Start both projects
+├── run-project-1.bat                  ← Start Project 1 only
+└── run-project-2.bat                  ← Start Project 2 only
+```

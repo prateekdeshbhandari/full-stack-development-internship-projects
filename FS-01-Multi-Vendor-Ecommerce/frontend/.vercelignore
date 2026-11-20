@@ -1,0 +1,10 @@
+.env
+.env.*
+*.env
+*.env.*
+AGENTS.md
+node_modules
+.next
+*.tsbuildinfo
+.git
+.vercel
