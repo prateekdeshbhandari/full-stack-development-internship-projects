@@ -9,6 +9,40 @@ When you open each project in your browser, it opens the **main website directly
 
 ---
 
+## 📸 Project Screenshots
+
+### Project 1: MarketHub — Multi-Vendor E-Commerce Marketplace
+
+**Homepage**
+![MarketHub Homepage](screenshots/fs-01/homepage.jpg)
+
+**Login Page**
+![MarketHub Login](screenshots/fs-01/login.jpg)
+
+**Products Page**
+![MarketHub Products](screenshots/fs-01/products.jpg)
+
+**Seller Dashboard**
+![MarketHub Dashboard](screenshots/fs-01/dashboard.png)
+
+---
+
+### Project 2: Gather — Real-Time Collaborative Workspace
+
+**Homepage**
+![Gather Homepage](screenshots/fs-02/homepage.jpg)
+
+**Workspace Dashboard**
+![Gather Dashboard](screenshots/fs-02/dashboard.png)
+
+**Login Page**
+![Gather Login](screenshots/fs-02/login.jpg)
+
+**Register Page**
+![Gather Register](screenshots/fs-02/register.jpg)
+
+---
+
 ## 🌐 Quick Access URLs
 
 | Project | Website URL | Backend API |
@@ -20,7 +54,7 @@ When you open each project in your browser, it opens the **main website directly
 
 ## 💻 How to Run (CMD / Terminal)
 
-Open **Command Prompt (CMD)** in the project directory (`C:\Users\Prateek DeshBhandari\OneDrive\Desktop\Project`):
+Open **Command Prompt (CMD)** in the project directory:
 
 ### Option 1: Run Both Projects Together (Recommended)
 Double-click **`run-all.bat`** or execute:
@@ -57,13 +91,13 @@ Double-click **`run-project-2.bat`** or run in two CMD windows:
 
 **Window 1 (Backend):**
 ```cmd
-cd FS-02-Real-Time-Collaborative-Workspace\FS-02-Collaborative-Workspace\backend
+cd FS-02-Collaborative-Workspace\backend
 npm start
 ```
 
 **Window 2 (Frontend):**
 ```cmd
-cd FS-02-Real-Time-Collaborative-Workspace\FS-02-Collaborative-Workspace\frontend
+cd FS-02-Collaborative-Workspace\frontend
 npm run dev
 ```
 
@@ -84,11 +118,25 @@ The user interfaces keep credentials clean and realistic (no passwords shown on-
 * **Password:** `password123`
 * *(You can also register any new customer or vendor account at `/register`)*
 
-### Project 2 (CollabSpace)
+### Project 2 (Gather)
 * **Login URL:** http://localhost:3001/login
 * **Email:** `alex@company.com`
 * **Password:** `password123`
 * *(You can also register any new team member account at `/register`)*
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Used For |
+| :--- | :--- |
+| React + Next.js | Frontend UI |
+| TypeScript | Type-safe code |
+| Node.js + Express | Backend API |
+| Tailwind CSS | Styling |
+| Socket.io | Real-time sync (Project 2) |
+| JWT | Authentication |
+| Prisma + PostgreSQL | Database layer |
 
 ---
 
