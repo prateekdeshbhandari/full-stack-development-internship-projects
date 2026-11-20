@@ -13,12 +13,6 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const fillDemoVendor = () => {
-    setEmail("vendor@market.com");
-    setPassword("password123");
-    setError("");
-  };
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
@@ -59,35 +53,6 @@ export default function LoginPage() {
           </div>
           <h1 style={{ margin: "18px 0 8px", fontSize: 34, letterSpacing: -1.2, color: "#111827" }}>Welcome back</h1>
           <p style={{ margin: 0, color: "#546369", lineHeight: 1.5, fontSize: 15 }}>Log in to manage your storefront, stock, and orders.</p>
-        </div>
-
-        {/* Demo Credentials Box */}
-        <div style={{ background: "#f6f8f2", border: "1px solid #e1ead6", borderRadius: 14, padding: "12px 14px", marginBottom: 20 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.8, color: "#3f5e1f" }}>
-              Demo Vendor Credentials
-            </span>
-            <button
-              type="button"
-              onClick={fillDemoVendor}
-              style={{
-                background: "#dfeecf",
-                border: "none",
-                borderRadius: 6,
-                padding: "3px 8px",
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#284411",
-                cursor: "pointer",
-              }}
-            >
-              Fill Credentials
-            </button>
-          </div>
-          <div style={{ fontSize: 13, color: "#445159", lineHeight: 1.4 }}>
-            <strong>Email:</strong> <code>vendor@market.com</code><br />
-            <strong>Password:</strong> <code>password123</code>
-          </div>
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: "grid", gap: 18 }}>

@@ -23,12 +23,6 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const fillDemoUser = () => {
-    setEmail("alex@company.com");
-    setPassword("password123");
-    setError("");
-  };
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
@@ -54,35 +48,6 @@ export default function LoginPage() {
           </div>
           <h1 style={{ margin: "18px 0 8px", fontSize: 34, letterSpacing: -1.4, color: "#1a2119" }}>Welcome back</h1>
           <p style={{ margin: 0, color: "#58615a", lineHeight: 1.5, fontSize: 15 }}>Sign in to collaborate live on documents with your team.</p>
-        </div>
-
-        {/* Demo Credentials Box */}
-        <div style={{ background: "#f5f8ed", border: "1px solid #e0ebcc", borderRadius: 14, padding: "12px 14px", marginBottom: 20 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.8, color: "#476b17" }}>
-              Demo Team Account
-            </span>
-            <button
-              type="button"
-              onClick={fillDemoUser}
-              style={{
-                background: "#dbeab3",
-                border: "none",
-                borderRadius: 6,
-                padding: "3px 8px",
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#284411",
-                cursor: "pointer",
-              }}
-            >
-              Fill Credentials
-            </button>
-          </div>
-          <div style={{ fontSize: 13, color: "#455340", lineHeight: 1.4 }}>
-            <strong>Email:</strong> <code>alex@company.com</code><br />
-            <strong>Password:</strong> <code>password123</code>
-          </div>
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: "grid", gap: 18 }}>

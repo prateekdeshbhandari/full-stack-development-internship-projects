@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const features = [
   {
     icon: "↗",
@@ -115,16 +117,17 @@ export default function HomePage() {
   return (
     <main className="site-shell">
       <header className="topbar">
-        <a className="brand" href="#" aria-label="Gather home">
+        <Link className="brand" href="/" aria-label="Gather home">
           <BrandMark />
           <span>gather</span>
-        </a>
+        </Link>
         <nav className="nav-links" aria-label="Main navigation">
-          <a href="#features">Why Gather</a>
-          <a href="#preview">How it works</a>
-          <a className="nav-cta" href="#preview">
-            Explore the workspace
-          </a>
+          <Link href="/document">Live Editor</Link>
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/workspace">Workspaces</Link>
+          <Link className="nav-cta" href="/login">
+            Sign In
+          </Link>
         </nav>
       </header>
 
@@ -145,12 +148,12 @@ export default function HomePage() {
             happen.
           </p>
           <div className="hero-actions">
-            <a className="button-primary" href="#preview">
-              Take a look around <span aria-hidden="true">&nbsp;↗</span>
-            </a>
-            <a className="text-link" href="#features">
-              Get to know Gather <span aria-hidden="true">→</span>
-            </a>
+            <Link className="button-primary" href="/document">
+              Open Live Editor <span aria-hidden="true">&nbsp;↗</span>
+            </Link>
+            <Link className="text-link" href="/dashboard">
+              Team Dashboard <span aria-hidden="true">→</span>
+            </Link>
           </div>
           <p className="hero-note">A calmer home for the work you do together.</p>
         </div>

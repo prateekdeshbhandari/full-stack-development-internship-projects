@@ -17,12 +17,6 @@ const categories = [
 export default function HomePage() {
   return (
     <main style={{ background: "#f5f5f2", minHeight: "100vh", color: "#101826", fontFamily: "system-ui, -apple-system, sans-serif" }}>
-      {/* Top Demo Notification Bar */}
-      <div style={{ background: "#111827", color: "#e5e7eb", textAlign: "center", padding: "10px 16px", fontSize: 13, fontWeight: 500 }}>
-        <span>✨ Multi-Vendor Marketplace Demo • Demo Vendor Login: <strong style={{ color: "#a3e635" }}>vendor@market.com</strong> / <strong style={{ color: "#a3e635" }}>password123</strong></span>
-        <Link href="/login" style={{ marginLeft: 12, color: "#fff", textDecoration: "underline", fontWeight: 700 }}>Log In →</Link>
-      </div>
-
       <header
         style={{
           maxWidth: 1200,
