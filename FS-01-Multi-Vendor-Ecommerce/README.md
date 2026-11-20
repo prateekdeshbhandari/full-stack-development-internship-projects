@@ -5,16 +5,16 @@ An Amazon-style marketplace where many vendors sell, customers buy, and the plat
 ## Screenshots
 
 **Homepage**
-![Homepage](../../screenshots/fs-01/homepage.jpg)
+![Homepage](images/homepage.jpg)
 
 **Login Page**
-![Login](../../screenshots/fs-01/login.jpg)
+![Login](images/login.jpg)
 
 **Products Page**
-![Products](../../screenshots/fs-01/products.jpg)
+![Products](images/products.jpg)
 
 **Seller Dashboard**
-![Dashboard](../../screenshots/fs-01/dashboard.png)
+![Dashboard](images/dashboard.png)
 
 ---
 

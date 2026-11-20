@@ -5,16 +5,16 @@ A Notion/Figma-style workspace where several people edit the same document at on
 ## Screenshots
 
 **Homepage**
-![Homepage](../screenshots/fs-02/homepage.jpg)
+![Homepage](images/homepage.jpg)
 
 **Workspace Dashboard**
-![Dashboard](../screenshots/fs-02/dashboard.png)
+![Dashboard](images/dashboard.png)
 
 **Login Page**
-![Login](../screenshots/fs-02/login.jpg)
+![Login](images/login.jpg)
 
 **Register Page**
-![Register](../screenshots/fs-02/register.jpg)
+![Register](images/register.jpg)
 
 ---
 

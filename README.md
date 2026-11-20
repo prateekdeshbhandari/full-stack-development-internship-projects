@@ -14,32 +14,32 @@ When you open each project in your browser, it opens the **main website directly
 ### Project 1: MarketHub — Multi-Vendor E-Commerce Marketplace
 
 **Homepage**
-![MarketHub Homepage](screenshots/fs-01/homepage.jpg)
+![MarketHub Homepage](FS-01-Multi-Vendor-Ecommerce/images/homepage.jpg)
 
 **Login Page**
-![MarketHub Login](screenshots/fs-01/login.jpg)
+![MarketHub Login](FS-01-Multi-Vendor-Ecommerce/images/login.jpg)
 
 **Products Page**
-![MarketHub Products](screenshots/fs-01/products.jpg)
+![MarketHub Products](FS-01-Multi-Vendor-Ecommerce/images/products.jpg)
 
 **Seller Dashboard**
-![MarketHub Dashboard](screenshots/fs-01/dashboard.png)
+![MarketHub Dashboard](FS-01-Multi-Vendor-Ecommerce/images/dashboard.png)
 
 ---
 
 ### Project 2: Gather — Real-Time Collaborative Workspace
 
 **Homepage**
-![Gather Homepage](screenshots/fs-02/homepage.jpg)
+![Gather Homepage](FS-02-Collaborative-Workspace/images/homepage.jpg)
 
 **Workspace Dashboard**
-![Gather Dashboard](screenshots/fs-02/dashboard.png)
+![Gather Dashboard](FS-02-Collaborative-Workspace/images/dashboard.png)
 
 **Login Page**
-![Gather Login](screenshots/fs-02/login.jpg)
+![Gather Login](FS-02-Collaborative-Workspace/images/login.jpg)
 
 **Register Page**
-![Gather Register](screenshots/fs-02/register.jpg)
+![Gather Register](FS-02-Collaborative-Workspace/images/register.jpg)
 
 ---
 
