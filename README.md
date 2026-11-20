@@ -11,8 +11,8 @@ Welcome! This repository contains two complete full-stack web applications built
 
 | Project | Live URL |
 | :--- | :--- |
-| **Project 1: MarketHub** | **https://markethub-fs01.vercel.app** *(coming soon)* |
-| **Project 2: Gather** | **https://gather-fs02.vercel.app** *(coming soon)* |
+| **Project 1: MarketHub (Multi-Vendor Marketplace)** | 👉 **https://full-stack-development-internship-p.vercel.app** |
+| **Project 2: Gather (Collaborative Workspace)** | 👉 **https://gather-workspace-psi.vercel.app** |
 
 ---
 
