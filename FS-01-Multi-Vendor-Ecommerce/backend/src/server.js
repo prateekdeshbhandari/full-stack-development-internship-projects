@@ -1,9 +1,25 @@
 const http = require('node:http');
-const { randomUUID } = require('node:crypto');
+const { randomUUID, createHash } = require('node:crypto');
 const { placeOrder, listOrders } = require('./services/orderService');
 
 const PORT = Number.parseInt(process.env.PORT || '4000', 10);
 const MAX_BODY_BYTES = 16 * 1024;
+
+const hashPassword = (password) => createHash('sha256').update(String(password)).digest('hex');
+const users = new Map();
+const sessions = new Map();
+
+// Seed initial demo vendor account
+const demoVendor = {
+  id: 'vendor-1',
+  name: 'Demo Vendor',
+  email: 'vendor@market.com',
+  role: 'vendor',
+  passwordHash: hashPassword('password123'),
+  createdAt: new Date().toISOString(),
+};
+users.set(demoVendor.email, demoVendor);
+
 const products = new Map(
   [
     {
@@ -155,7 +171,7 @@ const server = http.createServer(async (request, response) => {
     response.setHeader('Access-Control-Allow-Origin', frontendOrigin);
     response.setHeader('Vary', 'Origin');
     response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
-    response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   }
 
   if (request.method === 'OPTIONS') {
@@ -174,6 +190,95 @@ const server = http.createServer(async (request, response) => {
 
   if (url.pathname === '/api/health' && request.method === 'GET') {
     sendJson(response, 200, { status: 'ok', service: 'multi-vendor-ecommerce-api' });
+    return;
+  }
+
+  if (url.pathname === '/api/auth/register' && request.method === 'POST') {
+    if (request.headers['content-type']?.split(';')[0].trim() !== 'application/json') {
+      sendJson(response, 415, { message: 'Content-Type must be application/json.' });
+      return;
+    }
+    try {
+      const body = await readJsonBody(request);
+      const name = typeof body.name === 'string' ? body.name.trim() : '';
+      const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
+      const password = typeof body.password === 'string' ? body.password : '';
+      const role = body.role === 'vendor' ? 'vendor' : 'customer';
+
+      if (!name || !email || !password || password.length < 6) {
+        sendJson(response, 400, { message: 'Name, valid email, and password of at least 6 characters are required.' });
+        return;
+      }
+      if (users.has(email)) {
+        sendJson(response, 409, { message: 'An account with this email already exists.' });
+        return;
+      }
+
+      const user = {
+        id: randomUUID(),
+        name,
+        email,
+        role,
+        passwordHash: hashPassword(password),
+        createdAt: new Date().toISOString(),
+      };
+      users.set(email, user);
+      const token = randomUUID();
+      sessions.set(token, user.id);
+
+      sendJson(response, 201, {
+        user: { id: user.id, name: user.name, email: user.email, role: user.role },
+        token,
+      });
+    } catch (err) {
+      sendJson(response, err.status || 400, { message: err.message });
+    }
+    return;
+  }
+
+  if (url.pathname === '/api/auth/login' && request.method === 'POST') {
+    if (request.headers['content-type']?.split(';')[0].trim() !== 'application/json') {
+      sendJson(response, 415, { message: 'Content-Type must be application/json.' });
+      return;
+    }
+    try {
+      const body = await readJsonBody(request);
+      const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
+      const password = typeof body.password === 'string' ? body.password : '';
+
+      const user = users.get(email);
+      if (!user || user.passwordHash !== hashPassword(password)) {
+        sendJson(response, 401, { message: 'Invalid email or password.' });
+        return;
+      }
+
+      const token = randomUUID();
+      sessions.set(token, user.id);
+
+      sendJson(response, 200, {
+        user: { id: user.id, name: user.name, email: user.email, role: user.role },
+        token,
+      });
+    } catch (err) {
+      sendJson(response, err.status || 400, { message: err.message });
+    }
+    return;
+  }
+
+  if (url.pathname === '/api/auth/me' && request.method === 'GET') {
+    const authHeader = request.headers.authorization || '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
+    const userId = sessions.get(token);
+    const user = [...users.values()].find((u) => u.id === userId);
+
+    if (!user) {
+      sendJson(response, 401, { message: 'Not authenticated.' });
+      return;
+    }
+
+    sendJson(response, 200, {
+      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+    });
     return;
   }
 
@@ -311,6 +416,9 @@ const server = http.createServer(async (request, response) => {
 
   const knownPath =
     url.pathname === '/api/health' ||
+    url.pathname === '/api/auth/register' ||
+    url.pathname === '/api/auth/login' ||
+    url.pathname === '/api/auth/me' ||
     url.pathname === '/api/products' ||
     url.pathname === '/api/orders' ||
     productMatch !== null;
