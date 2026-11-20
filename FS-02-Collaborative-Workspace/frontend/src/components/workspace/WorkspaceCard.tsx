@@ -1,4 +1,5 @@
-﻿import type { ReactNode } from "react";
+﻿import Link from "next/link";
+import type { ReactNode } from "react";
 
 export function WorkspaceCard({
   title,
@@ -14,13 +15,19 @@ export function WorkspaceCard({
   icon: ReactNode;
 }) {
   return (
-    <div
+    <Link
+      href="/document"
       style={{
+        display: "block",
+        textDecoration: "none",
+        color: "inherit",
         background: "#ffffff",
         border: "1px solid #edf0ea",
         borderRadius: 20,
         padding: 22,
         boxShadow: "0 18px 40px rgba(23, 32, 17, 0.04)",
+        transition: "transform 0.2s, box-shadow 0.2s",
+        cursor: "pointer",
       }}
     >
       <div
@@ -60,8 +67,11 @@ export function WorkspaceCard({
           {meta}
         </span>
       </div>
-      <h3 style={{ margin: "0 0 8px", fontSize: 22, letterSpacing: -0.8 }}>{title}</h3>
-      <p style={{ margin: 0, color: "#586259", lineHeight: 1.6 }}>{subtitle}</p>
-    </div>
+      <h3 style={{ margin: "0 0 8px", fontSize: 20, letterSpacing: -0.6, color: "#1c241a" }}>{title}</h3>
+      <p style={{ margin: 0, color: "#586259", lineHeight: 1.6, fontSize: 14 }}>{subtitle}</p>
+      <div style={{ marginTop: 14, fontSize: 13, color: "#4f6e24", fontWeight: 700 }}>
+        Open in Editor →
+      </div>
+    </Link>
   );
 }

@@ -10,8 +10,21 @@ try {
   }
 } catch (error) {
   // In-memory fallback if Prisma client is not generated or database is unreachable
+  const bcrypt = require('bcryptjs');
   const usersById = new Map();
   const usersByEmail = new Map();
+
+  const demoHash = bcrypt.hashSync('password123', 10);
+  const demoUser = {
+    id: 'user-demo-1',
+    name: 'Alex Morgan',
+    email: 'alex@company.com',
+    passwordHash: demoHash,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+  usersById.set(demoUser.id, demoUser);
+  usersByEmail.set(demoUser.email, demoUser);
 
   prisma = {
     user: {

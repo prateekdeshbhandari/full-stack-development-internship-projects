@@ -16,24 +16,34 @@ const categories = [
 
 export default function HomePage() {
   return (
-    <main style={{ background: "#f5f5f2", minHeight: "100vh", color: "#101826" }}>
+    <main style={{ background: "#f5f5f2", minHeight: "100vh", color: "#101826", fontFamily: "system-ui, -apple-system, sans-serif" }}>
+      {/* Top Demo Notification Bar */}
+      <div style={{ background: "#111827", color: "#e5e7eb", textAlign: "center", padding: "10px 16px", fontSize: 13, fontWeight: 500 }}>
+        <span>✨ Multi-Vendor Marketplace Demo • Demo Vendor Login: <strong style={{ color: "#a3e635" }}>vendor@market.com</strong> / <strong style={{ color: "#a3e635" }}>password123</strong></span>
+        <Link href="/login" style={{ marginLeft: 12, color: "#fff", textDecoration: "underline", fontWeight: 700 }}>Log In →</Link>
+      </div>
+
       <header
         style={{
           maxWidth: 1200,
           margin: "0 auto",
-          padding: "24px 28px",
+          padding: "20px 28px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          flexWrap: "wrap",
+          gap: 16,
         }}
       >
-        <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: -1 }}>MarketHub</div>
-        <nav style={{ display: "flex", gap: 22, alignItems: "center", fontWeight: 600, color: "#445159" }}>
-          <Link href="/">Home</Link>
-          <Link href="/products">Products</Link>
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/login" style={{ background: "#111827", color: "#fff", borderRadius: 999, padding: "10px 16px" }}>
-            Login
+        <div style={{ fontSize: 26, fontWeight: 800, letterSpacing: -1, color: "#111827" }}>
+          🛍️ MarketHub
+        </div>
+        <nav style={{ display: "flex", gap: 20, alignItems: "center", fontWeight: 600, color: "#445159", fontSize: 15 }}>
+          <Link href="/" style={{ color: "#111827", textDecoration: "none" }}>Home</Link>
+          <Link href="/products" style={{ color: "#445159", textDecoration: "none" }}>Products</Link>
+          <Link href="/dashboard" style={{ color: "#445159", textDecoration: "none" }}>Vendor Dashboard</Link>
+          <Link href="/login" style={{ background: "#111827", color: "#fff", borderRadius: 999, padding: "8px 18px", textDecoration: "none" }}>
+            Sign In
           </Link>
         </nav>
       </header>
@@ -44,37 +54,37 @@ export default function HomePage() {
           margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "1.05fr 0.95fr",
-          gap: 30,
+          gap: 36,
           alignItems: "center",
-          padding: "50px 28px 32px",
+          padding: "40px 28px 32px",
         }}
       >
         <div>
           <p style={{ margin: 0, letterSpacing: 1.4, textTransform: "uppercase", color: "#4c5a62", fontWeight: 700, fontSize: 12 }}>
             Curated by independent sellers
           </p>
-          <h1 style={{ margin: "18px 0 14px", fontSize: "clamp(42px, 6vw, 72px)", letterSpacing: -3.5, lineHeight: 0.95 }}>
+          <h1 style={{ margin: "18px 0 14px", fontSize: "clamp(38px, 5.5vw, 68px)", letterSpacing: -2.5, lineHeight: 1.05, color: "#111827" }}>
             Discover what your market is obsessed with.
           </h1>
-          <p style={{ margin: 0, maxWidth: 560, color: "#53606c", fontSize: 18, lineHeight: 1.7 }}>
+          <p style={{ margin: 0, maxWidth: 560, color: "#53606c", fontSize: 17, lineHeight: 1.7 }}>
             Shop from trusted vendors, manage inventory, and turn product discovery into repeat sales across your marketplace.
           </p>
-          <div style={{ display: "flex", gap: 18, marginTop: 28, flexWrap: "wrap" }}>
-            <Link href="/products" style={{ background: "#111827", color: "#fff", borderRadius: 999, padding: "14px 22px", fontWeight: 700 }}>
-              Explore products
+          <div style={{ display: "flex", gap: 16, marginTop: 28, flexWrap: "wrap" }}>
+            <Link href="/products" style={{ background: "#111827", color: "#fff", borderRadius: 999, padding: "14px 24px", fontWeight: 700, textDecoration: "none", boxShadow: "0 4px 14px rgba(17,24,39,0.15)" }}>
+              Explore Products →
             </Link>
-            <Link href="/register" style={{ background: "#edf3dd", color: "#1d2b2a", borderRadius: 999, padding: "14px 22px", fontWeight: 700 }}>
-              Become a seller
+            <Link href="/dashboard" style={{ background: "#edf3dd", color: "#1d2b2a", borderRadius: 999, padding: "14px 24px", fontWeight: 700, textDecoration: "none" }}>
+              Seller Dashboard
             </Link>
           </div>
-          <div style={{ display: "flex", gap: 28, marginTop: 30, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 28, marginTop: 36, flexWrap: "wrap" }}>
             <div>
-              <strong style={{ display: "block", fontSize: 22 }}>3,200+</strong>
+              <strong style={{ display: "block", fontSize: 24, color: "#111827" }}>3,200+</strong>
               <span style={{ color: "#53606c", fontSize: 14 }}>independent vendors</span>
             </div>
             <div>
-              <strong style={{ display: "block", fontSize: 22 }}>Curated</strong>
-              <span style={{ color: "#53606c", fontSize: 14 }}>products with a story</span>
+              <strong style={{ display: "block", fontSize: 24, color: "#111827" }}>Instant</strong>
+              <span style={{ color: "#53606c", fontSize: 14 }}>cart checkout & orders</span>
             </div>
           </div>
         </div>
@@ -83,8 +93,8 @@ export default function HomePage() {
           style={{
             background: "linear-gradient(135deg, #f8f3df 0%, #edf3d8 100%)",
             borderRadius: 28,
-            minHeight: 420,
-            padding: 28,
+            minHeight: 400,
+            padding: 30,
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
@@ -92,59 +102,31 @@ export default function HomePage() {
           }}
         >
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ background: "#fff", borderRadius: 999, padding: "8px 12px", fontWeight: 700 }}>Top picks</span>
-            <span style={{ background: "#dfeecf", borderRadius: 999, padding: "8px 12px", fontWeight: 700 }}>Live</span>
+            <span style={{ background: "#fff", borderRadius: 999, padding: "8px 14px", fontWeight: 700, fontSize: 13 }}>Featured Sellers</span>
+            <span style={{ background: "#dfeecf", color: "#2d4411", borderRadius: 999, padding: "8px 14px", fontWeight: 700, fontSize: 13 }}>Live Store</span>
           </div>
-          <div style={{ fontSize: 120, textAlign: "center" }}>✦</div>
-          <div style={{ background: "rgba(255,255,255,0.7)", borderRadius: 18, padding: 18 }}>
-            <div style={{ fontSize: 12, letterSpacing: 1.2, textTransform: "uppercase", color: "#4c5a62", fontWeight: 700 }}>Featured seller</div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 10 }}>
-              <div>
-                <div style={{ fontSize: 24, fontWeight: 800 }}>Fjord Goods</div>
-                <small style={{ color: "#5d6771" }}>Handpicked home essentials</small>
-              </div>
-              <div style={{ fontSize: 28, fontWeight: 800 }}>$128</div>
-            </div>
+          <div style={{ fontSize: 96, textAlign: "center", margin: "20px 0" }}>🛍️</div>
+          <div style={{ background: "rgba(255,255,255,0.85)", backdropFilter: "blur(8px)", borderRadius: 18, padding: 20 }}>
+            <div style={{ fontSize: 11, letterSpacing: 1.2, textTransform: "uppercase", color: "#4c5a62", fontWeight: 700 }}>Marketplace Spotlight</div>
+            <h3 style={{ margin: "6px 0", fontSize: 20 }}>Handcrafted & Designer Goods</h3>
+            <p style={{ margin: 0, color: "#53606c", fontSize: 14 }}>Multi-vendor payouts, real-time inventory management, and instant order tracking.</p>
           </div>
         </div>
       </section>
 
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "18px 28px 30px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", gap: 16, flexWrap: "wrap", marginBottom: 18 }}>
+      {/* Featured Products Preview */}
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 28px 60px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
           <div>
-            <p style={{ margin: "0 0 6px", color: "#56646c", fontSize: 12, fontWeight: 700, letterSpacing: 1.2, textTransform: "uppercase" }}>Find your next favorite</p>
-            <h2 style={{ margin: 0, fontSize: 34, letterSpacing: -1.2 }}>Shop by category</h2>
+            <h2 style={{ margin: 0, fontSize: 28, letterSpacing: -1 }}>Trending Products</h2>
+            <p style={{ margin: "4px 0 0", color: "#56646c", fontSize: 15 }}>Curated picks from our top independent sellers</p>
           </div>
-          <Link href="/products" style={{ color: "#1d2b2a", fontWeight: 700 }}>Browse everything</Link>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
-          {categories.map((category) => (
-            <Link
-              key={category.name}
-              href="/products"
-              style={{ display: "flex", alignItems: "center", gap: 16, background: "#fff", border: "1px solid #edf0ee", borderRadius: 18, padding: 18, color: "#101826" }}
-            >
-              <span style={{ display: "grid", placeItems: "center", width: 48, height: 48, flexShrink: 0, borderRadius: 14, background: "#edf3dd", fontSize: 20, fontWeight: 800 }}>
-                {category.tag}
-              </span>
-              <span>
-                <strong style={{ display: "block", marginBottom: 4 }}>{category.name}</strong>
-                <span style={{ color: "#53606c", fontSize: 13 }}>{category.description}</span>
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "18px 28px 80px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
-          <h2 style={{ margin: 0, fontSize: 34, letterSpacing: -1.2 }}>Trending now</h2>
-          <Link href="/products" style={{ color: "#1d2b2a", fontWeight: 700 }}>View all</Link>
+          <Link href="/products" style={{ color: "#111827", fontWeight: 700, fontSize: 14 }}>View All Products →</Link>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 20 }}>
-          {products.map((product) => (
-            <ProductCard key={product.title} {...product} />
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20 }}>
+          {products.map((p) => (
+            <ProductCard key={p.title} {...p} />
           ))}
         </div>
       </section>
